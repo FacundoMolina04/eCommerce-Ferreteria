@@ -21,7 +21,7 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     final controller =
-        Provider.of<Controller>(context); // Obtiene el controlador de Provider
+        Provider.of<Controller>(context); 
     cartItems = controller.getCartItems();
 
     final theme = Theme.of(context);
@@ -189,14 +189,14 @@ class _CartPageState extends State<CartPage> {
                                     TextButton(
                                       onPressed: () {
                                         Navigator.of(context).pop(
-                                            false); // Cierra el diálogo y devuelve false
+                                            false); 
                                       },
                                       child: const Text('Cancelar'),
                                     ),
                                     ElevatedButton(
                                       onPressed: () {
                                         Navigator.of(context).pop(
-                                            true); // Cierra el diálogo y devuelve true
+                                            true); 
                                       },
                                       child: const Text('Confirmar'),
                                     ),
@@ -206,7 +206,7 @@ class _CartPageState extends State<CartPage> {
                             );
 
                             if (confirmed == true) {
-                              // Si el usuario confirma, realiza el pago
+                              
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content: Text('Procesando pago...')),

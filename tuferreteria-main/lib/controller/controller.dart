@@ -41,11 +41,11 @@ class Controller with ChangeNotifier {
 
       if (response.statusCode == 200) {
         var data =
-            jsonDecode(response.body) as List; // Decodifica el JSON a una lista
+            jsonDecode(response.body) as List;
             print("data $data");
         productos = data
             .map((item) => Product.fromJson(item))
-            .toList(); // Asegúrate de convertirlo a List<Product> 
+            .toList(); 
         return productos;
       } else {
         print('Error fetching products: ${response.statusCode}');
@@ -152,8 +152,7 @@ class Controller with ChangeNotifier {
     }
   }
 
-  // Órdenes
-  //cambié
+
   Future<List<Order>> getUserOrders() async {
     try {
 
@@ -228,7 +227,7 @@ class Controller with ChangeNotifier {
     }
   }
 
-  // Carrito
+
   Future<List<CartItem>> getCartItems() async {
     try {
 
@@ -327,7 +326,7 @@ class Controller with ChangeNotifier {
     }
   }
 
-  // Autenticación
+
   Future<void> register(String name, String email, String password) async {
     try {
       var url = Uri.parse('$baseUrl/register');
@@ -354,7 +353,7 @@ class Controller with ChangeNotifier {
 
   Future<LoginResponse> login(String email, String password) async {
     try {
-      //final response = await dio.post('$baseUrl/auth', data: {'email': email, 'password': password});
+  
       var url = Uri.http("localhost:8889", 'api/v1/auth');
       var response = await http.post(
         url,
@@ -369,7 +368,7 @@ class Controller with ChangeNotifier {
       if (response.statusCode == 200) {
         String tokenRes = jsonDecode(response.body)["token"];
         await FlutterSessionJwt.saveToken(tokenRes);
-        //This will return payload object/map
+      
         var payload = await FlutterSessionJwt.getPayload();
         admin = (payload["user_role"] == "ADMIN");
         print("admin $admin");

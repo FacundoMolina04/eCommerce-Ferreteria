@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
-  // Definir controladores de texto para email y contraseña
+  
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -12,7 +12,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<Controller>(context); // Obtiene el controlador de Provider
+    final controller = Provider.of<Controller>(context); 
     
     return Scaffold(
       backgroundColor: Colors.white,
@@ -33,9 +33,9 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 48),
               
-              // Campo de email con controlador
+              
               TextField(
-                controller: _emailController, // Asignar controlador de email
+                controller: _emailController, 
                 decoration: InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(
@@ -47,9 +47,9 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 32),
 
-              // Campo de contraseña con controlador
+              
               TextField(
-                controller: _passwordController, // Asignar controlador de contraseña
+                controller: _passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Contraseña',
@@ -63,7 +63,7 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 24),
 
-              // Botón de iniciar sesión
+           
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue[800],
@@ -75,11 +75,11 @@ class LoginPage extends StatelessWidget {
                   elevation: 2,
                 ),
                 onPressed: () async {
-                  // Obtener valores del email y la contraseña
+               
                   String email = _emailController.text;
                   String password = _passwordController.text;
 
-                  // Aquí llamamos a la función de inicio de sesión del controller
+                 
                   LoginResponse response = await controller.login(email, password);
                   
                   if(response.logged){
@@ -92,13 +92,13 @@ class LoginPage extends StatelessWidget {
                       ),
                     );
                   }
-                  // Navegar a la página de productos si es exitoso
+                 
                 },
                 child: const Text('Iniciar sesión', style: TextStyle(fontSize: 16)),
               ),
               const SizedBox(height: 16),
 
-              // Botón para registrarse
+           
               TextButton(
                 child: const Text.rich(
                   TextSpan(

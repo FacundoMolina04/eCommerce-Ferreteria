@@ -4,7 +4,7 @@ import 'package:ferreteria/presentation/pages/product_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ferreteria/presentation/widgets/product_card.dart';
 import 'package:flutter_session_jwt/flutter_session_jwt.dart';
-import 'package:provider/provider.dart'; // Importar provider
+import 'package:provider/provider.dart'; 
 
 class ProductListPage extends StatefulWidget {
   const ProductListPage({super.key});
@@ -19,13 +19,13 @@ class _ProductListPageState extends State<ProductListPage> {
   @override
   void initState() {
     super.initState();
-    _isAdminFuture = Provider.of<Controller>(context, listen: false).isAdmin(); // Cambia según sea admin o no
+    _isAdminFuture = Provider.of<Controller>(context, listen: false).isAdmin(); 
     products = Provider.of<Controller>(context, listen: false).getProducts();
   }
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<Controller>(context); // Obtiene el controlador de Provider
+    final controller = Provider.of<Controller>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -54,7 +54,7 @@ class _ProductListPageState extends State<ProductListPage> {
                   ],
                 );
               } else {
-                return const SizedBox.shrink(); // Evita retornar null
+                return const SizedBox.shrink(); 
               }
             },
           ),
@@ -88,23 +88,23 @@ class _ProductListPageState extends State<ProductListPage> {
             child: controller.productos.isEmpty
                 ? const Center(child: Text('No hay productos disponibles.'))
                 : FutureBuilder<bool>(
-                    future: _isAdminFuture, // Obtener isAdmin aquí
+                    future: _isAdminFuture, 
                     builder: (context, adminSnapshot) {
                       if (adminSnapshot.connectionState == ConnectionState.waiting) {
                         return const Center(child: CircularProgressIndicator());
                       } else if (adminSnapshot.hasError) {
                         return const Center(child: Text('Error al verificar permisos de administrador.'));
                       } else if (adminSnapshot.hasData) {
-                        final isAdmin = adminSnapshot.data!; // Obtener el valor de isAdmin
+                        final isAdmin = adminSnapshot.data!; 
                         return GridView.builder(
                           padding: const EdgeInsets.all(8),
                           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             childAspectRatio: 0.75,
                           ),
-                          itemCount: controller.productos.length, // Usa productos del controlador
+                          itemCount: controller.productos.length, 
                           itemBuilder: (context, index) {
-                            final product = controller.productos[index]; // Producto del controlador
+                            final product = controller.productos[index]; 
                             return ProductCard(
                               name: product.name ,
                               price: product.price,
@@ -113,7 +113,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                 Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => ProductDetailPage(
                                     productId: product.id,
-                                    isAdmin: isAdmin, // Pasar isAdmin aquí
+                                    isAdmin: isAdmin, 
                                   ),
                                 ));
                               },
@@ -132,7 +132,7 @@ class _ProductListPageState extends State<ProductListPage> {
         future: _isAdminFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const SizedBox.shrink(); // No muestra el botón mientras carga
+            return const SizedBox.shrink(); 
           } else if (snapshot.hasData && snapshot.data!) {
             return FloatingActionButton(
               child: const Icon(Icons.add),
@@ -141,7 +141,7 @@ class _ProductListPageState extends State<ProductListPage> {
               },
             );
           } else {
-            return const SizedBox.shrink(); // No muestra el botón si no es admin
+            return const SizedBox.shrink(); 
           }
         },
       ),

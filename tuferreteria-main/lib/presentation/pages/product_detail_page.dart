@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final int productId;
-  final bool isAdmin; // Para identificar si el usuario es admin
+  final bool isAdmin; 
 
   const ProductDetailPage({
     super.key,
@@ -34,7 +34,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<Controller>(context); // Obtiene el controlador de Provider
+    final controller = Provider.of<Controller>(context);
 
     _productFuture = controller.getProduct(widget.productId);
     return Scaffold(
@@ -182,7 +182,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               content: Text('$quantity producto(s) añadido(s) al carrito'),
                             ),
                           );
-                          // Lógica para añadir al carrito
+                         
                           controller.addToCart(CartItem(product:product, quantity: quantity, id: 0));
                         },
                         child: const Text('Añadir al carrito', style: TextStyle(fontSize: 16)),
